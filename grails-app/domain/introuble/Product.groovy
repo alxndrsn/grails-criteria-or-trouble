@@ -9,10 +9,20 @@ class Product {
 	}
 
 	static namedQueries = {
-		search { taste ->
+		searchAll { taste ->
 			or {
 				eq('name', taste)
 				additives { eq('flavor', taste) }
+			}
+		}
+		searchAdditives { taste ->
+			or {
+				additives { eq('flavor', taste) }
+			}
+		}
+		searchProducts { taste ->
+			or {
+				eq('name', taste)
 			}
 		}
 	}
